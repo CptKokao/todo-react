@@ -205,3 +205,35 @@
     console.log(duck)
 
 ## Раздел 3: Основы React
+
+### 2-2. Пустой React проект
+
+* create-react-app создает структуру проекта
+* src/index.js - 'главный' JS файл
+* public/index.html - HTML шаблон
+
+### 2-3. React элементы
+
+        const a = <h1>Hi</h1>;
+
+* Создаются при помощи JSX
+* Легковесные объекты - Virtual DOM
+* TeactDOM.render() превращает React элементы в обычные браузерные DOM элементыи рендерит их на страницу
+
+### 2-4. React компоненты
+
+        const Header = () => {
+            return <h1>Hi</h1>;
+        };
+
+* Функции, которые возвращают React элементы
+* Должны начинаться с большой буквы
+* Имя затем можно использовать в JSX как HTML тег <AnyComponent />
+
+### 2-5. JSX
+
+* Позволяет использовать выражение { aneConst }
+* Атрибуты называются camelCase'ом (fontSize)
+* class = className, for = htmlFor
+* В свойство можно передаввать любое значение
+* null, undefined, true, flase в теле тегов игнорируются(не вызывая ошибок)
