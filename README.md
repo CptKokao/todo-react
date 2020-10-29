@@ -1,70 +1,207 @@
-# Getting Started with Create React App
+## Раздел 1: Введение
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 1-2. Что такое React
+  - Open Source UI библиотека
+  - JSX
+  - Использует UI компоненты
+  - Использует reconciliation алгоритм
+  
+### 1-3. Первое react приложение
+[https://codesandbox.io/](https://codesandbox.io/)
 
-## Available Scripts
+### 1-4. Среда разработки
 
-In the project directory, you can run:
+    npm i -g create-react-app
+    mkdir react-apps
+    cd react-apps/
+    create-react-app todo
+    cd todo
+    ls
+    npm start
+    
+    
+## Раздел 2: ECMAScript 2019
 
-### `npm start`
+### 2-1. let и const
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* **let**  - переменная
+* **const**  - константы
+* область видимости блок кода {}
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Используй **const**. Если действительно нужно поменять значение, то **let** 
 
-### `npm test`
+### 2-2. Arrow-функции
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    const f = (x) => x * x;
+* cохраняет лексическое значение this
+* нет свойства .prototype, не могут быть вызваны с new
 
-### `npm run build`
+### 2-3. Параметры по-умолчанию
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    const f = (a = 10, b = true) => {};
+* устанавливается если не передается значение или передается undefined
+* могут иметь любой тип
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2-4. Rest параметр (собирает несколько независимых аргументов в []) 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    const f = (a, b, ...other) => {};
+* всегда массив [] (может быть пустым)
+* должен быть последний в списке
+* максимум один rest-параметр в функции
 
-### `npm run eject`
+### 2-5. Spread оператор (разворачивает массив, превращая его в список аргументов)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    const a = [1, 2];
+    const max = Math.max(...a)
+    ---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    const b = [...arr1, ...arr2] - копия []
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 2-6. Деструктуризация объектов (упрощает получение свойств из объектов)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    const person = {
+      name: 'Sergey',
+      last: 'Markov'
+    }
+    const { name, last, age = 18 } = person; - параметр по умолчанию, если сойства нет (age = 18)
+    const { name: firstname, last: lastname } = person; - изменяет название переменных
+    ---
 
-## Learn More
+    const person = {
+      name: {
+        first: 'Sergey',
+        last: 'Markov'
+      }
+    }
+    const {name: {first: firstname, last: lastname} = {}} - получает свойства во вложенном {}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    
+### 2-7. Деструктуризация массивов (упрощает получение свойств из объектов)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    const [a, , b] = [1, 2, 3]; - можно пропускать значения
+    ---
 
-### Code Splitting
+    const [a, b, c = 3] = [1, 2]; - добавляет значения по-умолчанию
+    ---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    const arr = [1, 2, 3];
+    const [a, ...others] = arr; - получает все остальные значения
+    ---
+    
+    const shape = {
+      type: 'segment',
+      coordinates: {
+        start: [10, 15],
+        end: [17, 15]
+      }
+    };
 
-### Analyzing the Bundle Size
+    const {coordinates: {start: [startX, startY], end: [endX, endY]}} = shape;
+    console.log(startX, startY, endX, endY);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 2-8. Шаблонные строки (template strings)
 
-### Making a Progressive Web App
+    `Hello ${world}`
+    `Hello ${getWorld()}`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 2-9. Объекты
+    const x = 1;
+    const y = 2;
 
-### Advanced Configuration
+    const a = {
+      x, 
+      y,
+      draw() {...}  
+    }
+    ---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+    const res = Object.assign({}, obj1, obj2) - копирование объектов
 
-### Deployment
+### 2-10. Оператор Object Spread
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Разворарачивает объект, превращая его в список свойств.
 
-### `npm run build` fails to minify
+    const res = {
+      ...obj1,
+      ...obj2,
+      anyconst,
+      anyfunc() {...}
+    } 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 2-11. Прототипы
+
+**new**
+
+    function Animal(name, voice) {
+      this.name = name;
+      this.voice = voice;
+    }
+
+    Animal.prototype.say = function() {
+      console.log(this.name, 'goes', this.voice);
+    }
+
+    const dog = new Animal('Dog', 'woof')
+    dog.say();
+---
+
+**Object.create** - Устаревший способ
+
+    const animal = {
+      say: function() {
+        console.log(this.name, 'goes', this.voice);
+      }
+    };
+
+    function createAnimal(name, voice) {
+      const result = Object.create(animal);
+      result.name = name;
+      result.voice = voice;
+      return result;
+    }
+
+    const dog = createAnimal('Dog', 'woof')
+    dog.say();
+---
+
+**Object.setPrototypeOf** - Не оптимизирован
+
+    const animal = {
+      say: function() {
+        console.log(this.name, 'goes', this.voice);
+      }
+    };
+
+    const dog = {
+      name: 'dog',
+      voice: 'woof'
+    };
+
+    Object.setPrototypeOf(dog, animal)
+    dog.say();
+
+
+### 2-11. Классы
+
+    class Animal {
+      constructor(name, voice) {
+        this.name = name;
+        this.voice = voice;
+      }
+
+      say() {
+        console.log(this.name, 'goes', this.voice);
+      }
+    }
+
+    class Bird extends Animal {
+      constructor(name, voice, canFly) {
+        super(name, voice);
+        this.canFly = canFly;
+      }
+    }
+
+    const duck = new Bird('duck', 'quack', true);
+    console.log(duck)
+
+## Раздел 3: Основы React
