@@ -237,3 +237,9 @@
 * class = className, for = htmlFor
 * В свойство можно передаввать любое значение
 * null, undefined, true, flase в теле тегов игнорируются(не вызывая ошибок)
+
+### 2-6. Props
+
+        const Header = (props) => {
+            return <h1>Hi {props.name}</h1>;
+        };
