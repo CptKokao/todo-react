@@ -243,3 +243,21 @@
         const Header = (props) => {
             return <h1>Hi {props.name}</h1>;
         };
+
+### 2-7. Массивы, как свойства компонентов
+
+
+        const App = () => {
+
+          const todoData = [
+              { label: 'Drink coffee', important: false },
+              { label: 'Build Awesome App', important: true },
+              { label: 'Have a lunch', important: false },
+          ];
+
+          return (
+              <div>
+                  <TodoList todos = { todoData } />
+              </div>
+          );
+        };
