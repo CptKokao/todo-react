@@ -285,3 +285,30 @@
 * Классы наследуют React.Component
 * Метод rendor() возвращает элемент
 * props доступны через this.props
+
+### 4-2. Обработка событий
+
+* Добавить свойство onClick (onBlur, onMouseOver,..) к элементу
+* Передать функцию
+* Убедиться, что this сохраняет правильное значение внутри функции
+
+        class TodoListItem extends Component {
+          constructor() {
+            super();
+
+            this.onLabelClick = () => {
+              console.log(this);
+              console.log(`Done: ${this.props.label}`);
+            };
+          }
+
+        render() {
+        
+          return (
+            <span
+              className="todo-list-item-label"
+              style={style}
+              onClick={ this.onLabelClick}
+              >
+              {label}
+            </span>
