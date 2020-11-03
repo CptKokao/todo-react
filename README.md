@@ -326,3 +326,19 @@
             })
           };
 
+### 4-5. Обновление состояние которое зависит от предыдущего
+
+* setState принимает функцию
+
+          this.setState((state) => {
+            return {
+              done: !state.done
+            }
+          })
+
+          this.setState(({ done }) => {
+            return {
+              done: !done
+            }
+          })
+
