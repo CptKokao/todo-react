@@ -53,6 +53,14 @@ export default class App extends Component {
 		});
 	}
 
+	toggleImportant = (id) => {
+		console.log('important', id);
+	}
+
+	toggleDone = (id) => {
+		console.log('done', id);
+	}
+
 	render() {
 		return (
 			<div className="todo-app">
@@ -64,6 +72,8 @@ export default class App extends Component {
 					<TodoList 
 						todos = { this.state.todoData }
 						onDeleted = { this.deleteItem }
+						onToggleImportant = { this.toggleImportant }
+						onToggleDone = { this.toggleDone }
 					/>
 					<ItemAdd 
 						onAddItem = { this.addItem }
