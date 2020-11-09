@@ -369,3 +369,15 @@
 * Добавить элемент в начало массива
 
           const newArr = [newItem, ...oldArr];
+
+### 4-9. setState() - изменить элемент
+
+* Копирует объект (новый объект) и меняет его свойство
+
+          const newObj = [...oldOdj, prop: newVlaue];
+
+* Копирует массив и изменяет объект
+
+          const newArr = [...oldArr.slice(0, idx),
+						              newItem,
+					                ...oldArr.slice(idx + 1)];
