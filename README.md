@@ -381,3 +381,9 @@
           const newArr = [...oldArr.slice(0, idx),
 						              newItem,
 					                ...oldArr.slice(idx + 1)];
+
+### 4-10. Работа с формой
+
+* onChabge() получает текущее значение (e.target.value)
+* onSubmit() событие отправки формы
+* e.preventDefault() отмена собыитий по-умолчанию

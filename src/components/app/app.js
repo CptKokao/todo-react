@@ -45,21 +45,16 @@ export default class App extends Component {
 		});
 	}
 
-	addItem = () => {
+	addItem = (label) => {
 		this.setState(({ todoData }) => {
 			const newItem = { 
-				label: 'TestAddItem', 
+				label, 
 				important: false, 
 				id: this.id++
 			};
-			
-			const newArr = [
-				...todoData,
-				newItem
-			]
 
 			return {
-				todoData: newArr
+				todoData: [...todoData, newItem]
 			}
 		});
 	}
