@@ -20,7 +20,8 @@ export default class App extends Component {
 				this.createTodoItem('Build Awesome App'),
 				this.createTodoItem('Have a lunch')
 			],
-			term: ''
+			term: '',
+			filter: 'all'
 		}
 	}
 
@@ -98,18 +99,35 @@ export default class App extends Component {
 		}
 			
 		return todoData.filter((el) => {
-			return el.label.toLowerCase().indexOf(term.toLowerCase()) !== -1
-		});
+											return el.label.toLowerCase().indexOf(term.toLowerCase()) !== -1
+										})
+	}
+
+	filter = (todoData, filter) => {
+		switch (filter) {
+			case 'All' :
+				return todoData
+			case 'Active' :
+				return todoData.filter((el) => !el.done)
+			case 'Done' :
+				return todoData.filter((el) => el.done)
+			default : 
+				return todoData
+		}
 	}
 
 	onSearhChange = (value) => {
 		this.setState({term : value})
 	}
 
-	render() {
-		const { todoData, term } 	= this.state;
+	onFilterChange = (filter) => {
+		this.setState({filter})
+	}
 
-		const visibleItems = this.search(todoData, term);
+	render() {
+		const { todoData, term, filter } 	= this.state;
+
+		const visibleItems = this.filter(this.search(todoData, term), filter);
 
 		//  Определяем количество выполненых задач
 		const doneCount = todoData.filter((el) => el.done).length;
@@ -124,7 +142,7 @@ export default class App extends Component {
 						<SearchPanel 
 							onSearch = {this.onSearhChange}
 						/>
-						<ItemStatusFilter />
+						<ItemStatusFilter onFilterChange = {this.onFilterChange} filter = {filter}/>
 					</div>
 					<TodoList 
 						todos = { visibleItems }
