@@ -105,11 +105,11 @@ export default class App extends Component {
 
 	filter = (todoData, filter) => {
 		switch (filter) {
-			case 'All' :
+			case 'all' :
 				return todoData
-			case 'Active' :
+			case 'active' :
 				return todoData.filter((el) => !el.done)
-			case 'Done' :
+			case 'done' :
 				return todoData.filter((el) => el.done)
 			default : 
 				return todoData
@@ -128,6 +128,7 @@ export default class App extends Component {
 		const { todoData, term, filter } 	= this.state;
 
 		const visibleItems = this.filter(this.search(todoData, term), filter);
+		console.log(visibleItems);
 
 		//  Определяем количество выполненых задач
 		const doneCount = todoData.filter((el) => el.done).length;
@@ -142,7 +143,9 @@ export default class App extends Component {
 						<SearchPanel 
 							onSearch = {this.onSearhChange}
 						/>
-						<ItemStatusFilter onFilterChange = {this.onFilterChange} filter = {filter}/>
+						<ItemStatusFilter 
+							onFilterChange = {this.onFilterChange} 
+							filter = {filter}/>
 					</div>
 					<TodoList 
 						todos = { visibleItems }
